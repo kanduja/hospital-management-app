@@ -1,0 +1,251 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<title>Patient Dashboard</title>
+
+<link
+rel="stylesheet"
+href="{% static 'patient_dashboard.css' %}">
+
+</head>
+
+<body>
+
+<nav>
+
+<div class="logo">
+
+🏥 MediCare
+
+</div>
+
+<div class="menu">
+
+<a href="{% url 'appointment_booking' %}">
+Book Appointment
+</a>
+<a href="{% url 'e_billing' %}">
+E-Billing
+</a>
+
+<a href="{% url 'patient_history' %}">
+History
+</a>
+
+<a href="{% url 'e_billing' %}">
+Prescriptions
+</a>
+
+<a href="{% url 'home' %}">
+Logout
+</a>
+
+</div>
+
+</nav>
+
+<section class="hero">
+
+<div class="welcome">
+
+<h1>
+
+Welcome Back
+
+</h1>
+
+<p>
+
+Access appointments,
+view prescriptions,
+track billing
+and manage healthcare.
+
+</p>
+
+</div>
+
+</section>
+
+<section class="dashboard">
+
+<a
+href="{% url 'appointment_booking' %}"
+class="card">
+
+<div class="icon">
+
+🩺
+
+</div>
+
+<h2>
+
+Book Appointment
+
+</h2>
+
+<p>
+
+Choose doctor and reserve consultation.
+
+</p>
+
+</a>
+
+<a
+href="{% url 'e_billing' %}"
+
+class="card">
+
+<div class="icon">
+
+💳
+
+</div>
+
+<h2>
+
+E-Billing
+
+</h2>
+
+<p>
+
+View invoices,
+payment status
+and billing records.
+
+</p>
+
+</a>
+
+<a
+href="{% url 'patient_history' %}"
+class="card">
+
+<div class="icon">
+
+📜
+
+</div>
+
+<h2>
+
+Appointment History
+
+</h2>
+
+<p>
+
+View all your appointments,
+doctor responses
+and visit records.
+
+</p>
+
+</a>
+
+<a
+href="{% url 'patient_prescription' %}"
+class="card">
+
+<div class="icon">
+
+📄
+
+</div>
+
+<h2>
+
+Prescriptions
+
+</h2>
+
+<p>
+
+Open uploaded prescriptions
+from your doctors.
+
+</p>
+
+</a>
+
+<div class="card">
+
+<div class="icon">
+
+🔔
+
+</div>
+
+<h2>
+
+Latest Appointment Status
+
+</h2>
+
+<div class="history-box">
+
+{% if appointments %}
+
+{% for appointment in appointments|slice:":3" %}
+
+<div class="history-item">
+
+<b>
+
+Dr.
+
+{{ appointment.doctor.username }}
+
+</b>
+
+<br>
+
+{{ appointment.appointment_date }}
+
+—
+
+{% if appointment.status == "Approved" %}
+
+🟢 Approved
+
+{% elif appointment.status == "Rejected" %}
+
+🔴 Rejected
+
+{% else %}
+
+🟡 Pending
+
+{% endif %}
+
+</div>
+
+{% endfor %}
+
+{% else %}
+
+<div class="empty">
+
+No appointment updates available
+
+</div>
+
+{% endif %}
+
+</div>
+
+</div>
+
+</section>
+
+</body>
+
+</html>

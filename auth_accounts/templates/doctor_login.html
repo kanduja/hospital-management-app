@@ -1,0 +1,120 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<title>
+
+Doctor Login
+
+</title>
+
+<link
+rel="stylesheet"
+href="{% static 'doctor_login.css' %}">
+
+</head>
+
+<body>
+
+<div class="overlay">
+
+<div class="left">
+
+<h1>
+
+Doctor <br>
+
+Portal
+
+</h1>
+
+<p class="subtitle">
+
+Secure access to appointments,
+patient records
+and schedules.
+
+</p>
+
+<div class="quote">
+
+"Behind every recovery
+is a doctor who cared."
+
+</div>
+
+</div>
+
+<div class="right">
+
+<div class="login-box">
+
+<h2>
+
+👨‍⚕️ Welcome Doctor
+
+</h2>
+
+{% if error %}
+
+<div class="error">
+
+{{ error }}
+
+</div>
+
+{% endif %}
+
+<form method="POST">
+
+{% csrf_token %}
+
+<input
+type="text"
+name="username"
+placeholder="Doctor Username"
+required>
+
+<input
+type="password"
+name="password"
+placeholder="Password"
+required>
+
+<button type="submit">
+
+LOGIN
+
+</button>
+
+</form>
+
+<div class="bottom">
+
+Doctor account not available?
+
+Contact Admin
+
+</div>
+
+<a
+href="{% url 'home' %}"
+class="back">
+
+← Back Home
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</body>
+
+</html>

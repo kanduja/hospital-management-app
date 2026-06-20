@@ -1,0 +1,130 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<title>
+
+Appointment Booking
+
+</title>
+
+<link
+rel="stylesheet"
+href="{% static 'appointment_booking.css' %}">
+
+</head>
+
+<body>
+
+<nav>
+
+<div class="logo">
+
+🏥 MediCare
+
+</div>
+
+<a
+href="{% url 'patient_dashboard' %}"
+class="back">
+
+← Dashboard
+
+</a>
+
+</nav>
+
+<div class="container">
+
+<div class="booking-box">
+
+<h1>
+
+Book Appointment
+
+</h1>
+
+<p>
+
+Choose your doctor and reserve consultation.
+
+</p>
+
+<form method="POST">
+
+{% csrf_token %}
+
+<select
+name="doctor"
+required>
+
+<option value="">
+
+Select Doctor
+
+</option>
+
+{% for doctor in doctors %}
+
+<option
+value="{{ doctor.id }}">
+
+Dr.
+
+{{ doctor.username }}
+
+—
+
+{{ doctor.specialization }}
+
+</option>
+
+{% endfor %}
+
+</select>
+
+<input
+type="date"
+name="appointment_date"
+required>
+<div class="row">
+
+<input
+type="time"
+name="appointment_time"
+required
+step="60"
+lang="en-GB">
+
+</div>
+
+
+<textarea
+name="symptoms"
+
+placeholder="Describe symptoms"
+
+required>
+
+</textarea>
+
+<button
+type="submit">
+
+BOOK APPOINTMENT
+
+</button>
+
+</form>
+
+</div>
+
+</div>
+
+</body>
+
+</html>

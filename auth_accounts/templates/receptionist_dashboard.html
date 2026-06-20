@@ -1,0 +1,194 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<title>
+
+Reception Dashboard
+
+</title>
+
+<link
+rel="stylesheet"
+href="{% static 'receptionist_dashboard.css' %}">
+
+</head>
+
+<body>
+
+<nav>
+
+<div class="logo">
+
+🏥 MediCare Reception
+
+</div>
+
+<div>
+
+<a
+href="{% url 'bill' %}"
+class="bill">
+
+Create E-Bill
+
+</a>
+
+<a
+href="{% url 'home' %}"
+class="logout">
+
+Logout
+
+</a>
+
+</div>
+
+</nav>
+
+<section class="hero">
+
+<h1>
+
+Appointment Management
+
+</h1>
+
+<p>
+
+View appointments from all doctors
+and manage patient billing.
+
+</p>
+
+</section>
+
+<div class="table-container">
+
+<table>
+
+<tr>
+
+<th>
+
+Patient
+
+</th>
+
+<th>
+
+Doctor
+
+</th>
+
+<th>
+
+Date
+
+</th>
+
+<th>
+
+Time
+
+</th>
+
+<th>
+
+Symptoms
+
+</th>
+
+<th>
+
+Status
+
+</th>
+
+</tr>
+
+{% for appointment in appointments %}
+
+<tr>
+
+<td>
+
+{{ appointment.patient.username }}
+
+</td>
+
+<td>
+
+Dr.
+
+{{ appointment.doctor.username }}
+
+</td>
+
+<td>
+
+{{ appointment.appointment_date }}
+
+</td>
+
+<td>
+
+{{ appointment.appointment_time }}
+
+</td>
+
+<td>
+
+{{ appointment.symptoms }}
+
+</td>
+
+<td>
+
+{% if appointment.status == "Approved" %}
+
+🟢 Approved
+
+{% elif appointment.status == "Rejected" %}
+
+🔴 Rejected
+
+{% elif appointment.status == "Prescription Submitted" %}
+
+📄 Prescription Uploaded
+
+{% else %}
+
+🟡 Pending
+
+{% endif %}
+
+</td>
+
+</tr>
+
+{% empty %}
+
+<tr>
+
+<td colspan="6">
+
+No appointments available
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+</div>
+
+</body>
+
+</html>

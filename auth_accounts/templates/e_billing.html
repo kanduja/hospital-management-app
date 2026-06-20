@@ -1,0 +1,200 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<title>
+
+E-Billing
+
+</title>
+
+<link
+rel="stylesheet"
+href="{% static 'e_billing.css' %}">
+
+</head>
+
+<body>
+
+<nav>
+
+<div class="logo">
+
+🏥 MediCare Billing
+
+</div>
+
+<a
+href="{% url 'patient_dashboard' %}">
+
+← Dashboard
+
+</a>
+
+</nav>
+
+
+
+
+
+<div class="container">
+
+<h1>
+
+My Bills
+
+</h1>
+
+
+
+
+
+{% if bills %}
+
+{% for bill in bills %}
+
+<div class="bill-card">
+
+<div class="row">
+
+<span>
+
+Patient
+
+</span>
+
+<b>
+
+{{ bill.patient.username }}
+
+</b>
+
+</div>
+
+
+
+
+
+<div class="row">
+
+<span>
+
+Consultation
+
+</span>
+
+<b>
+
+₹{{ bill.consultation_fee }}
+
+</b>
+
+</div>
+
+
+
+
+
+<div class="row">
+
+<span>
+
+Medicine
+
+</span>
+
+<b>
+
+₹{{ bill.medicine_fee }}
+
+</b>
+
+</div>
+
+
+
+
+
+<div class="row">
+
+<span>
+
+Tax
+
+</span>
+
+<b>
+
+₹{{ bill.tax }}
+
+</b>
+
+</div>
+
+
+
+
+
+<div class="row total">
+
+<span>
+
+Total Paid
+
+</span>
+
+<b>
+
+₹{{ bill.total_amount }}
+
+</b>
+
+</div>
+
+
+
+
+
+<div class="row">
+
+<span>
+
+Paid On
+
+</span>
+
+<b>
+
+{{ bill.created_at }}
+
+</b>
+
+</div>
+
+</div>
+
+{% endfor %}
+
+
+
+
+
+{% else %}
+
+<div class="empty">
+
+No bills generated yet
+
+</div>
+
+{% endif %}
+
+</div>
+
+</body>
+
+</html>

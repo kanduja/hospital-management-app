@@ -1,0 +1,158 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<title>
+
+MediCare | Home
+
+</title>
+
+<link
+rel="stylesheet"
+href="{% static 'home.css' %}">
+
+</head>
+
+<body>
+
+<div class="overlay">
+
+<div class="left">
+
+<h1>
+
+Healing Starts <br>
+
+With Care
+
+</h1>
+
+<p class="subtitle">
+
+Every patient deserves comfort,
+every doctor deserves trust,
+every moment deserves care.
+
+</p>
+
+<div class="quote">
+
+"Where compassion meets medicine,
+hope begins."
+
+</div>
+
+<div class="roles">
+
+<a
+href="{% url 'doctor_login' %}"
+class="card">
+
+<div class="icon">
+
+🩺
+
+</div>
+
+<p>
+
+Doctor
+
+</p>
+
+</a>
+
+<a
+href="{% url 'patient_login' %}"
+class="card">
+
+<div class="icon">
+
+🧑‍🦽
+
+</div>
+
+<p>
+
+Patient
+
+</p>
+
+</a>
+
+<a
+href="{% url 'receptionist_login' %}"
+class="card">
+
+<div class="icon">
+
+📋
+
+</div>
+
+<p>
+
+Reception
+
+</p>
+
+</a>
+
+</div>
+
+</div>
+
+<div class="right">
+
+<div class="glass">
+
+<h2>
+
+Welcome
+
+</h2>
+
+<p>
+
+Select your portal
+
+</p>
+
+<a
+href="{% url 'patient_login' %}"
+class="btn">
+
+Patient Login
+
+</a>
+
+<a
+href="{% url 'doctor_login' %}"
+class="btn">
+
+Doctor Login
+
+</a>
+
+<a
+href="{% url 'receptionist_login' %}"
+class="btn">
+
+Reception Login
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</body>
+
+</html>

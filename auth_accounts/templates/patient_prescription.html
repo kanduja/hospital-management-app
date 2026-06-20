@@ -1,0 +1,104 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<title>
+
+My Prescriptions
+
+</title>
+
+<link
+rel="stylesheet"
+href="{% static 'patient_prescription.css' %}">
+
+</head>
+
+<body>
+
+<nav>
+
+<div class="logo">
+
+🏥 MediCare
+
+</div>
+
+<a
+href="{% url 'patient_dashboard' %}">
+
+← Dashboard
+
+</a>
+
+</nav>
+
+<div class="container">
+
+<h1>
+
+Uploaded Prescriptions
+
+</h1>
+
+{% if prescriptions %}
+
+{% for prescription in prescriptions %}
+
+<div class="card">
+
+<h2>
+
+Dr.
+
+{{ prescription.appointment.doctor.username }}
+
+</h2>
+
+<p>
+
+Date:
+
+{{ prescription.appointment.appointment_date }}
+
+</p>
+
+<p>
+
+Status:
+
+Prescription Uploaded
+
+</p>
+
+<a
+href="{{ prescription.prescription_file.url }}"
+target="_blank">
+
+Open Prescription
+
+</a>
+
+</div>
+
+{% endfor %}
+
+{% else %}
+
+<div class="empty">
+
+No prescriptions uploaded yet
+
+</div>
+
+{% endif %}
+
+</div>
+
+</body>
+
+</html>

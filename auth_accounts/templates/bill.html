@@ -1,0 +1,152 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<title>Create E-Bill</title>
+
+<link
+rel="stylesheet"
+href="{% static 'bill.css' %}">
+
+</head>
+
+<body>
+
+<nav>
+
+<div class="logo">
+
+🏥 MediCare Billing
+
+</div>
+
+<a
+href="{% url 'receptionist_dashboard' %}"
+class="back">
+
+← Dashboard
+
+</a>
+
+</nav>
+
+
+
+<div class="container">
+
+<div class="bill-box">
+
+<h1>
+
+Generate E-Bill
+
+</h1>
+
+<p>
+
+Create payment invoice after patient payment.
+
+</p>
+
+
+
+<form method="POST">
+
+{% csrf_token %}
+
+
+
+<label>
+
+Select Patient
+
+</label>
+
+<select
+name="patient"
+required>
+
+<option value="">
+
+Choose Patient
+
+</option>
+
+{% for patient in patients %}
+
+<option
+value="{{ patient.id }}">
+
+{{ patient.username }}
+
+</option>
+
+{% endfor %}
+
+</select>
+
+
+
+
+
+<label>
+
+Consultation Fee
+
+</label>
+
+<input
+type="number"
+name="consultation"
+required>
+
+
+
+<label>
+
+Medicine Fee
+
+</label>
+
+<input
+type="number"
+name="medicine"
+required>
+
+
+
+<label>
+
+Tax
+
+</label>
+
+<input
+type="number"
+name="tax"
+required>
+
+
+
+
+
+<button
+type="submit">
+
+GENERATE BILL
+
+</button>
+
+</form>
+
+</div>
+
+</div>
+
+</body>
+
+</html>

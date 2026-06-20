@@ -1,0 +1,77 @@
+{% load static %}
+
+<html>
+
+<head>
+
+<link
+rel="stylesheet"
+href="{% static 'upload_prescription.css' %}">
+
+</head>
+
+<body>
+
+<div class="box">
+
+<h1>
+
+Pending Prescriptions
+
+</h1>
+
+<form
+method="POST"
+enctype="multipart/form-data">
+
+{% csrf_token %}
+
+<select
+name="appointment"
+required>
+
+<option>
+
+Select Appointment
+
+</option>
+
+{% for appointment in appointments %}
+
+<option
+value="{{ appointment.id }}">
+
+{{ appointment.patient.username }}
+
+—
+
+{{ appointment.appointment_date }}
+
+—
+
+Pending Prescription
+
+</option>
+
+{% endfor %}
+
+</select>
+
+<input
+type="file"
+name="prescription"
+required>
+
+<button>
+
+UPLOAD PRESCRIPTION
+
+</button>
+
+</form>
+
+</div>
+
+</body>
+
+</html>
